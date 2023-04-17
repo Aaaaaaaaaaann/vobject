@@ -528,6 +528,8 @@ class Component(VBase):
             else:
                 return self.contents[toVName(name)][0]
         except KeyError:
+            if name == 'dtend':
+                return object.__getattribute__(self, 'dtstart')
             raise AttributeError(name)
 
     normal_attributes = ['contents', 'name', 'behavior', 'parentBehavior', 'group']
